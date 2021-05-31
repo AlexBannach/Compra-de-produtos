@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ex09</title>
-
-   <style>
-       html{
-  background-color: antiquewhite;
-}
-
-input[type=text], input[type=number]{   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex04</title>
+    <style>
+        input[type=text], input[type=number]{   
     border-radius:4px;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
@@ -42,12 +38,11 @@ legend
   font-style:bold;
   font-family: "Segoe UI";
 }
-   </style>
+    </style>
 </head>
-
 <body>
-    <div class="container" id="nav-container"></div>
-        <h1>Compra de produtos</h1>
+   
+        <h2>Pesquisa de quais destas pizzas você mais gosta?</h2>
         <p>
             
             <label for="nome">Nome:</label>
@@ -68,105 +63,70 @@ legend
             <label for="cidade">Cidade</label>
             <input type="text" id="cidade" size="25"><br><br>
             <label for="estados">Estados</label>
-					<select id="Estados">
-					<option></option>
-					<optgroup label="Norte">
-						<option>Amapá - AP</option>
-						<option>Acre - AC</option>
-						<option>Amazonas - AM</option>
-						<option>Pará - PA</option>
-						<option>Rondônia - RO</option>
-						<option>Roraima - RR</option>
-						<option>Tocantins - TO</option>
-					</optgroup>
-					<optgroup label="Nordeste">
-						<option>Sergipe - SE</option>
-						<option>Rio Grande do Norte - RN</option>
-						<option>Piauí - PI</option>
-						<option>Pernambuco - PE</option>
-						<option>Paraíba - PB</option>
-						<option>Maranhão - MA</option>
-						<option>Ceará - CE</option>
-						<option>Bahia - BA</option>
-						<option>Alagoas - AL</option>
-					</optgroup>
-					<optgroup label="Sudeste">
-						<option>Espírito Santo - ES</option>
-						<option>Minas Gerais - MG</option>
-						<option>Rio de Janeiro - RJ</option>
-						<option>São Paulo - SP</option>
-					</optgroup>
-					<optgroup label="Sul">
-						<option>Santa Catarina - SC</option>
-						<option>Paraná - PR</option>
-						<option>Rio Grande do Sul - RS</option>
-					</optgroup>
-					<optgroup label="Centro-Oeste">
-						<option>Distrito Federal - DF</option>
-						<option>Mato Grosso do Sul - MS</option>
-						<option>Mato Grosso - MT</option>
-						<option>Goiás - GO</option>
-					</optgroup>
-				</select>
+
+            <select id="estados">
+                <option value=""></option>
+                <option value="PR">Paraná - PR</option>
+                <option value="SC">Santa Catarina - SC</option>
+                <option value="RS">Rio Grande do Sul - RS</option>
+                
+            </select>
 
         </p>
-    </div>
-        <div class="col-md-6" id="contact-form">
-                <form action="#" method="post" class="demoForm" id="produtoForm" ></form>
-                <fieldset class="nd">
-                    <legend>Selecione os produtos</legend>
+       
+        <form action="#" method="post" class="demoForm" id="pizzaForm" ></form>
+        <fieldset class="nd">
+            <legend>Selecione uma Pizza</legend>
+
+      
+        
+        <p id="pizza">
+            <input type="checkbox" id="1" value="3 Queijos" /> 3 Queijos
+            <input type="checkbox" id="2" value="Frango com requeijão" /> Frango com requeijão
+            <input type="checkbox" id="3" value="Margherita" /> Margherita
+            <input type="checkbox" id="4" value="Mussarela" /> Mussarela
+            <input type="checkbox" id="5" value="Pepperoni" /> Pepperoni
+        </p>
+        </fieldset>
+    </form><br>
+    <button id="btn">Responder pesquisa</button>
+    <div id="resultado"></div>
+    <script>
+        var botao = document.getElementById("btn");
+
+            botao.addEventListener("click", function() {
+                var nome = document.getElementById("nome").value.toUpperCase();
+                    var idade  = document.getElementById("idade").value;
+                    var fone =  document.getElementById("fone").value;
+                    var end = document.getElementById("end").value.toUpperCase();
+                    var numero = document.getElementById("num").value;
+                    var cidade = document.getElementById("cidade").value.toUpperCase();
+                    var estado = document.getElementById("estados");
+                    var sexo = document.getElementsByName("genero");
+                    for (var x = 0; x < sexo.length; x++){
+                        if(sexo[x].checked){
+                             var result = sexo[x].value ;
                 
-                <p id="Produto">
-                    <input type="checkbox" id="1" value="Computador" /> Computador
-                    <input type="checkbox" id="2" value="Mouse" /> Mouse
-                    <input type="checkbox" id="3" value="Teclado" /> Teclado
-                    <input type="checkbox" id="4" value="Pendrive" /> Pendrive
-                    <input type="checkbox" id="5" value="Monitor" /> Monitor
-                </p>
-                </fieldset>
-            </form><br>
-   </div>
-   <script>
-    
-    var botao = document.getElementById("btn");
+                        }
+                    }
+                    
+                    var sabores = '';
 
-    botao.addEventListener("click", function () {
-    var nome = document.getElementById("nome").value.toUpperCase();
-    localStorage.setItem("Nome", nome);
-    var idade = document.getElementById("idade").value;
-    localStorage.setItem("idade", idade);
-    var fone = document.getElementById("fone").value;
-    localStorage.setItem("fone", fone);
-    var end = document.getElementById("end").value.toUpperCase();
-    localStorage.setItem("endereco", end);
-    var num = document.getElementById("num").value;
-    localStorage.setItem("numero", num);
-    var cidade = document.getElementById("cidade").value.toUpperCase();
-    localStorage.setItem("cidade", cidade);
-    var Estados = document.getElementById("Estados");
-    localStorage.setItem("Estados", Estados[Estados.selectedIndex].text.toUpperCase());
-    var sexo = document.getElementsByName("genero");
-    for (var x = 0; x < sexo.length; x++) {
-        if (sexo[x].checked) {
-            var result = sexo[x].value;
-            localStorage.setItem("genero", result.toUpperCase());
-        }
-    }
+                    for( var x =1; x <= 5; x++){
+                        var checkbox = document.getElementById(x);
+                        if(checkbox.checked){
+                            sabores += checkbox.value + "<br>" 
+                        }
+                    }
 
-    
-    var compras = '';
-
-    for (var x = 1; x <= 5; x++) {
-        var checkbox = document.getElementById(x);
-        if (checkbox.checked) {
-            compras += checkbox.value + ","
-            localStorage.setItem("Produto", compras.toUpperCase());
-        }
-    }
-
+                document.getElementById("resultado").innerHTML =
+                `${nome} <br> ${result.toUpperCase()} <br> ${idade} <br>
+                ${fone} <br> ${end} Nº ${numero} <br> ${cidade} <br>
+                ${estado[estado.selectedIndex].text.toUpperCase()} <br> Sabores preferidos: <br> ${sabores}`;
 });
-
     </script>
+</body>
+</html>
 
 </body>
 </html>
