@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex09</title>
+
+   <style>
+       html{
+  background-color: antiquewhite;
+}
+
+input[type=text], input[type=number]{   
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    box-shadow: 1px 1px 2px #333333;    
+    -moz-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 1px 1px 2px #333333;
+    border:1px solid #000000;
+   
+}
+ 
+textarea{
+    border: 1px solid #000000;
+    background:#cccccc;
+    width:150px;
+    height:100px;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    
+  }
+  fieldset{
+  width:600px;
+  height:80px;
+  
+  border-color: red;
+ 
+}
+legend
+{
+  font-style:bold;
+  font-family: "Segoe UI";
+}
+   </style>
+</head>
+
+<body>
+    
+        <h1>Compra de produtos</h1>
+        <p>
+            
+            <label for="nome">Nome:</label>
+            <input type="text" placeholder="Infome nome completo" id="nome" name="nome" size="50"><br><br>
+            <label >Sexo:</label>
+            <input type="radio" name="genero" id="masc" value="Masculino">
+            <label for="masc">Masculino</label>
+            <input type="radio" name="genero" id="femi" value="Feminino">
+            <label for="femi">Feminino</label><br><br>
+            <label for="idade">Sua idade:</label>
+            <input type="number" id="idade" size="5"><br><br>
+            <label for="fone">Telefone:</label>
+            <input type="text" id="fone" size="10"><br><br>
+            <label for="end">Endereço:</label>
+            <input type="text" id="end" size="50">
+            <label for="num">Nº</label>
+            <input type="text" id="num" size="5" ><br><br>
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" size="25"><br><br>
+            <label for="estados">Estados</label>
+					<select id="Estados">
+					<option></option>
+					<optgroup label="Norte">
+						<option>Amapá - AP</option>
+						<option>Acre - AC</option>
+						<option>Amazonas - AM</option>
+						<option>Pará - PA</option>
+						<option>Rondônia - RO</option>
+						<option>Roraima - RR</option>
+						<option>Tocantins - TO</option>
+					</optgroup>
+					<optgroup label="Nordeste">
+						<option>Sergipe - SE</option>
+						<option>Rio Grande do Norte - RN</option>
+						<option>Piauí - PI</option>
+						<option>Pernambuco - PE</option>
+						<option>Paraíba - PB</option>
+						<option>Maranhão - MA</option>
+						<option>Ceará - CE</option>
+						<option>Bahia - BA</option>
+						<option>Alagoas - AL</option>
+					</optgroup>
+					<optgroup label="Sudeste">
+						<option>Espírito Santo - ES</option>
+						<option>Minas Gerais - MG</option>
+						<option>Rio de Janeiro - RJ</option>
+						<option>São Paulo - SP</option>
+					</optgroup>
+					<optgroup label="Sul">
+						<option>Santa Catarina - SC</option>
+						<option>Paraná - PR</option>
+						<option>Rio Grande do Sul - RS</option>
+					</optgroup>
+					<optgroup label="Centro-Oeste">
+						<option>Distrito Federal - DF</option>
+						<option>Mato Grosso do Sul - MS</option>
+						<option>Mato Grosso - MT</option>
+						<option>Goiás - GO</option>
+					</optgroup>
+				</select>
+
+        </p>
+      
+        <form action="#" method="post" class="demoForm" id="produtoForm" ></form>
+        <fieldset class="nd">
+            <legend>Selecione os produtos</legend>
+        
+        <p id="Produto">
+            <input type="checkbox" id="1" value="Computador" /> Computador
+            <input type="checkbox" id="2" value="Mouse" /> Mouse
+            <input type="checkbox" id="3" value="Teclado" /> Teclado
+            <input type="checkbox" id="4" value="Pendrive" /> Pendrive
+            <input type="checkbox" id="5" value="Monitor" /> Monitor
+        </p>
+        </fieldset>
+    </form><br>
+   
+   <script>
+    
+    var botao = document.getElementById("btn");
+
+botao.addEventListener("click", function () {
+    var nome = document.getElementById("nome").value.toUpperCase();
+    localStorage.setItem("Nome", nome);
+    var idade = document.getElementById("idade").value;
+    localStorage.setItem("idade", idade);
+    var fone = document.getElementById("fone").value;
+    localStorage.setItem("fone", fone);
+    var end = document.getElementById("end").value.toUpperCase();
+    localStorage.setItem("endereco", end);
+    var num = document.getElementById("num").value;
+    localStorage.setItem("numero", num);
+    var cidade = document.getElementById("cidade").value.toUpperCase();
+    localStorage.setItem("cidade", cidade);
+    var Estados = document.getElementById("Estados");
+    localStorage.setItem("Estados", Estados[Estados.selectedIndex].text.toUpperCase());
+    var sexo = document.getElementsByName("genero");
+    for (var x = 0; x < sexo.length; x++) {
+        if (sexo[x].checked) {
+            var result = sexo[x].value;
+            localStorage.setItem("genero", result.toUpperCase());
+        }
+    }
+
+    
+    var compras = '';
+
+    for (var x = 1; x <= 5; x++) {
+        var checkbox = document.getElementById(x);
+        if (checkbox.checked) {
+            compras += checkbox.value + ","
+            localStorage.setItem("Produto", compras.toUpperCase());
+        }
+    }
+
+});
+
+    </script>
+
+</body>
+</html>
