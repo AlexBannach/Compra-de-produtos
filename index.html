@@ -46,7 +46,7 @@ legend
 </head>
 
 <body>
-    
+    <div class="container" id="nav-container"></div>
         <h1>Compra de produtos</h1>
         <p>
             
@@ -110,26 +110,27 @@ legend
 				</select>
 
         </p>
-      
-        <form action="#" method="post" class="demoForm" id="produtoForm" ></form>
-        <fieldset class="nd">
-            <legend>Selecione os produtos</legend>
-        
-        <p id="Produto">
-            <input type="checkbox" id="1" value="Computador" /> Computador
-            <input type="checkbox" id="2" value="Mouse" /> Mouse
-            <input type="checkbox" id="3" value="Teclado" /> Teclado
-            <input type="checkbox" id="4" value="Pendrive" /> Pendrive
-            <input type="checkbox" id="5" value="Monitor" /> Monitor
-        </p>
-        </fieldset>
-    </form><br>
-   
+    </div>
+        <div class="col-md-6" id="contact-form">
+                <form action="#" method="post" class="demoForm" id="produtoForm" ></form>
+                <fieldset class="nd">
+                    <legend>Selecione os produtos</legend>
+                
+                <p id="Produto">
+                    <input type="checkbox" id="1" value="Computador" /> Computador
+                    <input type="checkbox" id="2" value="Mouse" /> Mouse
+                    <input type="checkbox" id="3" value="Teclado" /> Teclado
+                    <input type="checkbox" id="4" value="Pendrive" /> Pendrive
+                    <input type="checkbox" id="5" value="Monitor" /> Monitor
+                </p>
+                </fieldset>
+            </form><br>
+   </div>
    <script>
     
     var botao = document.getElementById("btn");
 
-botao.addEventListener("click", function () {
+    botao.addEventListener("click", function () {
     var nome = document.getElementById("nome").value.toUpperCase();
     localStorage.setItem("Nome", nome);
     var idade = document.getElementById("idade").value;
